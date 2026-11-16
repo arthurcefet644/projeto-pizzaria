@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Gestão da Pizzaria</title>
+    <link rel="icon" href="data:,">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/variaveis.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/tabelas.css">
+</head>
+
+<body onload="iniciar()">
+
+    <header class="topo">
+        <div class="conteudo topo-linha">
+            <div class="marca">
+                <span class="marca-icone">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+                        <path d="M12 21 3.5 6.5a17 17 0 0 1 17 0L12 21z"/>
+                        <circle cx="9.5" cy="9.5" r="1" fill="currentColor"/>
+                        <circle cx="14" cy="11" r="1" fill="currentColor"/>
+                    </svg>
+                </span>
+                <span class="marca-titulo">Gestão da Pizzaria</span>
+            </div>
+            <span class="topo-frase">Mais cuidado em cada pedido.</span>
+        </div>
+
+        <nav class="conteudo abas">
+            <button type="button" id="abaCadastro" class="aba ativa" onclick="mostrarSecao('secCadastro')">Cadastrar pizza</button>
+            <button type="button" id="abaVenda" class="aba" onclick="mostrarSecao('secVenda')">Registrar venda</button>
+            <button type="button" id="abaEstoque" class="aba" onclick="mostrarSecao('secEstoque')">Estoque</button>
+            <button type="button" id="abaDono" class="aba" onclick="mostrarSecao('secDono')">Painel do dono</button>
+        </nav>
+    </header>
+
+    <main class="conteudo principal">
+
+        <div id="mensagem" role="status" aria-live="polite"></div>
+
+        <section id="secCadastro">
+            <h1 class="titulo-tela">Cadastrar pizza</h1>
+            <p class="subtitulo">Adicione uma pizza ao cardápio e informe a quantidade disponível.</p>
+
+            <div class="cartao">
+                <h2 class="cartao-titulo">Dados da pizza</h2>
+                <p class="cartao-sub">Todos os campos são obrigatórios.</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6 col-12">
+                        <label for="cadCodigo" class="rotulo">Código</label>
+                        <input type="number" id="cadCodigo" class="campo-entrada" min="1" step="1">
+                        <small class="ajuda">Identificador numérico da pizza.</small>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="cadNome" class="rotulo">Nome</label>
+                        <input type="text" id="cadNome" class="campo-entrada">
+                        <small class="ajuda">Nome que aparecerá na seleção de venda.</small>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="cadPreco" class="rotulo">Preço (R$)</label>
+                        <input type="number" id="cadPreco" class="campo-entrada" min="0" step="0.01">
+                        <small class="ajuda">Preço de venda por unidade.</small>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="cadQuantidade" class="rotulo">Quantidade em estoque</label>
+                        <input type="number" id="cadQuantidade" class="campo-entrada" min="0" step="1">
+                        <small class="ajuda">Quantidade de pizzas disponíveis para venda.</small>
+                    </div>
+                </div>
+
+                <div class="cartao-rodape">
+                    <span class="dica">Confira os dados antes de cadastrar.</span>
+                    <button type="button" class="botao botao-primario" onclick="cadastrarPizza()">Cadastrar</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="secVenda" style="display: none;">
+            <h1 class="titulo-tela">Registrar venda</h1>
+            <p class="subtitulo">Selecione a pizza, informe a quantidade e identifique o cliente.</p>
+
+            <div class="cartao">
+                <h2 class="cartao-titulo">Dados da venda</h2>
+                <p class="cartao-sub">Confira a disponibilidade antes de finalizar a venda.</p>
+
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="venPizza" class="rotulo">Pizza</label>
+                        <select id="venPizza" class="campo-entrada">
+                            <option value="0">Selecione...</option>
+                        </select>
+                        <small class="ajuda">Escolha a pizza que deseja vender.</small>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="venQuantidade" class="rotulo">Quantidade</label>
+                        <input type="number" id="venQuantidade" class="campo-entrada" min="1" step="1">
+                        <small class="ajuda">Quantidade de pizzas nesta venda.</small>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <label for="venCpf" class="rotulo">CPF do cliente</label>
+                        <input type="text" id="venCpf" class="campo-entrada" maxlength="14" placeholder="000.000.000-00">
+                        <small class="ajuda">Informe o CPF no formato indicado.</small>
+                    </div>
+                </div>
+
+                <div class="cartao-rodape">
+                    <span class="dica">Confira os dados antes de registrar a venda.</span>
+                    <button type="button" class="botao botao-primario" onclick="registrarVenda()">Vender</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="secEstoque" style="display: none;">
+            <h1 class="titulo-tela">Estoque</h1>
+            <p class="subtitulo">Consulte as pizzas cadastradas e reponha o estoque.</p>
+
+            <div class="cartao">
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <button type="button" class="botao botao-contorno" onclick="consultarEstoque()">Ver todas as pizzas</button>
+                    <button type="button" class="botao botao-contorno" onclick="listarDisponiveis()">Ver pizzas disponíveis</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tabelaPizzas" class="table table-striped">
+                        <thead id="cabecalho" style="display: none;">
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Estoque</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cartao mt-4">
+                <h2 class="cartao-titulo">Repor estoque</h2>
+                <p class="cartao-sub">Some unidades ao estoque de uma pizza já cadastrada.</p>
+
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-4 col-12">
+                        <label for="repCodigo" class="rotulo">Código da pizza</label>
+                        <input type="number" id="repCodigo" class="campo-entrada" min="1" step="1">
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <label for="repQuantidade" class="rotulo">Quantidade a adicionar</label>
+                        <input type="number" id="repQuantidade" class="campo-entrada" min="1" step="1">
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <button type="button" class="botao botao-alerta" onclick="reporEstoque()">Repor</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="secDono" style="display: none;">
+            <h1 class="titulo-tela">Painel do dono</h1>
+            <p class="subtitulo">Acompanhe vendas, faturamento e reposição.</p>
+
+            <div class="cartao">
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                    <button type="button" class="botao botao-contorno" onclick="exibirRanking('mais')">Mais vendidas</button>
+                    <button type="button" class="botao botao-contorno" onclick="exibirRanking('menos')">Menos vendidas</button>
+                    <button type="button" class="botao botao-contorno" onclick="exibirTotais()">Faturamento e total vendido</button>
+                    <button type="button" class="botao botao-contorno" onclick="exibirReposicao()">Precisam de reposição</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tabelaDono" class="table table-striped">
+                        <thead id="cabecalhoDono"></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="cartao mt-4">
+                <h2 class="cartao-titulo">Histórico de compras por CPF</h2>
+                <p class="cartao-sub">Veja as compras de um cliente e o total gasto.</p>
+
+                <div class="row g-3 align-items-end mb-3">
+                    <div class="col-md-8 col-12">
+                        <label for="histCpf" class="rotulo">CPF do cliente</label>
+                        <input type="text" id="histCpf" class="campo-entrada" maxlength="14" placeholder="000.000.000-00">
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <button type="button" class="botao botao-primario" onclick="exibirHistorico()">Ver histórico</button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tabelaHistorico" class="table table-striped">
+                        <thead id="cabecalhoHistorico"></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="text/javascript" src="js/biblioteca.js"></script>
+    <script type="text/javascript" src="js/funcionario.js"></script>
+    <script type="text/javascript" src="js/dono.js"></script>
+    <script type="text/javascript" src="js/ranking.js"></script>
+</body>
+</html>

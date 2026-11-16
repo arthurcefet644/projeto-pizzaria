@@ -1,0 +1,39 @@
+/* Cores, medidas e fontes do sistema. Mudou um valor aqui, mudou em todo o site. */
+:root {
+    --fundo: #2B2E33;
+    --cartao: #353940;
+    --campo: #3F444C;
+    --borda: #4A4F58;
+    --texto: #EDEEF0;
+    --texto-suave: #A9AEB8;
+
+    --acento: #D43F33;
+    --acento-hover: #B93429;
+
+    --sucesso: #4CAF7A;
+    --alerta: #E8A33D;
+    --alerta-hover: #D6922F;
+    --erro: #E5534B;
+
+    --sucesso-fundo: rgba(76, 175, 122, 0.12);
+    --alerta-fundo: rgba(232, 163, 61, 0.12);
+    --erro-fundo: rgba(229, 83, 75, 0.12);
+
+    --linha-zebra: #383C44;
+    --linha-hover: #41464F;
+
+    --raio-cartao: 14px;
+    --raio-campo: 10px;
+    --sombra-cartao: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+    --fonte-titulo: "Fraunces", Georgia, serif;
+    --fonte-texto: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Faz o Bootstrap usar as nossas cores nas partes que ele mesmo desenha */
+:root,
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--fundo);
+    --bs-body-color: var(--texto);
+    --bs-border-color: var(--borda);
+}

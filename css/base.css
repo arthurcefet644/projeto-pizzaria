@@ -1,0 +1,49 @@
+/* Aparência geral: página, textos e títulos */
+body {
+    margin: 0;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: var(--fonte-texto);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+    margin: 0;
+    color: var(--texto);
+    font-family: var(--fonte-titulo);
+    font-weight: 600;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+.titulo-tela {
+    margin-bottom: 8px;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+.subtitulo {
+    margin: 0 0 24px;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.ajuda {
+    display: block;
+    margin-top: 6px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+@media (max-width: 575px) {
+    .titulo-tela {
+        font-size: 26px;
+    }
+}

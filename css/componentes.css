@@ -1,0 +1,203 @@
+/* Peças reutilizáveis: cartão, campos, botões e avisos */
+
+/* Cartão */
+.cartao {
+    padding: 24px;
+    border-radius: var(--raio-cartao);
+    background: var(--cartao);
+    box-shadow: var(--sombra-cartao);
+}
+
+.cartao-titulo {
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+
+.cartao-sub {
+    margin: 0 0 24px;
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+.cartao-rodape {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borda);
+}
+
+.dica {
+    color: var(--texto-suave);
+    font-size: 12px;
+}
+
+/* Campos */
+.rotulo {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--texto);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.campo-entrada {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid transparent;
+    border-radius: var(--raio-campo);
+    background: var(--campo);
+    color: var(--texto);
+    font-size: 15px;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.campo-entrada::placeholder {
+    color: var(--texto-suave);
+    opacity: 0.7;
+}
+
+.campo-entrada:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 0 3px rgba(212, 63, 51, 0.25);
+}
+
+.campo-entrada.erro {
+    border-color: var(--erro);
+}
+
+select.campo-entrada option {
+    background: var(--campo);
+    color: var(--texto);
+}
+
+/* Botões */
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 10px 24px;
+    border: 1px solid transparent;
+    border-radius: var(--raio-campo);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.botao:focus-visible {
+    outline: 2px solid var(--texto);
+    outline-offset: 2px;
+}
+
+.botao:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.botao-primario {
+    background: var(--acento);
+    color: #fff;
+}
+
+.botao-primario:hover:not(:disabled) {
+    background: var(--acento-hover);
+}
+
+.botao-contorno {
+    border-color: var(--borda);
+    background: transparent;
+    color: var(--texto);
+}
+
+.botao-contorno:hover:not(:disabled) {
+    background: var(--campo);
+}
+
+.botao-alerta {
+    background: var(--alerta);
+    color: #2B2E33;
+}
+
+.botao-alerta:hover:not(:disabled) {
+    background: var(--alerta-hover);
+}
+
+/* Avisos (a div #mensagem recebe uma destas classes pelo JavaScript) */
+.aviso {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    border: 1px solid;
+    border-radius: var(--raio-campo);
+    color: var(--texto);
+    font-size: 14px;
+}
+
+.aviso::before {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.aviso-sucesso {
+    border-color: var(--sucesso);
+    background: var(--sucesso-fundo);
+}
+
+.aviso-sucesso::before {
+    content: "✓";
+    color: var(--sucesso);
+}
+
+.aviso-erro {
+    border-color: var(--erro);
+    background: var(--erro-fundo);
+}
+
+.aviso-erro::before {
+    content: "!";
+    color: var(--erro);
+}
+
+.aviso-alerta {
+    border-color: var(--alerta);
+    background: var(--alerta-fundo);
+}
+
+.aviso-alerta::before {
+    content: "i";
+    color: var(--alerta);
+}
+
+@media (max-width: 575px) {
+    .cartao {
+        padding: 20px 16px;
+    }
+
+    .cartao-rodape {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cartao-rodape .botao,
+    .col-12 > .botao {
+        width: 100%;
+    }
+}
